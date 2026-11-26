@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Vehicle Photo Studio – Galerie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app" class="overlay" hidden>
+  <section class="panel" role="dialog" aria-labelledby="title">
+    <header class="top">
+      <div class="brand">
+        <span class="rec" aria-hidden="true"></span>
+        <div>
+          <h1 id="title">Meine Fahrzeugfotos</h1>
+          <p id="summary" class="summary"></p>
+        </div>
+      </div>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Suchen: Name, Modell, Kennzeichen" autocomplete="off">
+        <select id="category" hidden><option value="">Alle Kategorien</option></select>
+        <div class="seg" id="filter" role="group" aria-label="Filter">
+          <button type="button" data-f="all" class="on">Alle</button>
+          <button type="button" data-f="with">Mit Foto</button>
+          <button type="button" data-f="without">Ohne Foto</button>
+        </div>
+        <button type="button" id="close" class="icon" title="Schließen (Esc)" aria-label="Schließen">✕</button>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="grid-wrap">
+        <div id="grid" class="grid"></div>
+        <p id="empty" class="empty" hidden>Keine Fahrzeuge gefunden.</p>
+      </div>
+
+      <aside id="detail" class="detail" hidden>
+        <div class="viewer">
+          <div class="frame">
+            <img id="big" alt="">
+            <div id="bigEmpty" class="noimg" hidden><span class="cam" aria-hidden="true"></span>Noch kein Foto</div>
+            <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+            <span id="bigLabel" class="label"></span>
+          </div>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+        <div class="info">
+          <h2 id="dName"></h2>
+          <dl id="dFacts" class="facts"></dl>
+          <div class="actions">
+            <button type="button" id="copy" class="btn">Link kopieren</button>
+            <button type="button" id="shoot" class="btn primary" hidden>Jetzt fotografieren</button>
+            <button type="button" id="del" class="btn danger">Foto löschen</button>
+          </div>
+          <div id="confirm" class="confirm" hidden>
+            <span>Dieses Foto wirklich löschen?</span>
+            <button type="button" id="delYes" class="btn danger">Löschen</button>
+            <button type="button" id="delNo" class="btn">Abbrechen</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <div id="toast" class="toast" hidden></div>
+</div>
+<div id="menu" class="overlay menu-wrap" hidden>
+  <section class="menu" role="dialog" aria-labelledby="menuTitle">
+    <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+    <header class="menu-head">
+      <span class="rec" aria-hidden="true"></span>
+      <h1 id="menuTitle">Fotostudio</h1>
+    </header>
+    <div id="menuItems" class="menu-items"></div>
+    <p class="menu-hint"><kbd>Esc</kbd> schließen</p>
+  </section>
+</div>
+<textarea id="clip" aria-hidden="true" tabindex="-1"></textarea>
+<script src="app.js"></script>
+</body>
+</html>

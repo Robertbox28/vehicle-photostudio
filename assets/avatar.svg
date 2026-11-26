@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2433"/>
+      <stop offset="1" stop-color="#0f1216"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6e9bff"/>
+      <stop offset="1" stop-color="#1f5bd8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Sucher-Ecken (innerhalb des Kreises, den Discord ausschneidet) -->
+  <g fill="none" stroke="#e8eaee" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M116 176 V116 H176"/>
+    <path d="M336 116 H396 V176"/>
+    <path d="M116 336 V396 H176"/>
+    <path d="M396 336 V396 H336"/>
+  </g>
+
+  <!-- REC-Punkt -->
+  <circle cx="356" cy="160" r="14" fill="#ff5a4e"/>
+
+  <!-- Bodenschatten -->
+  <ellipse cx="256" cy="348" rx="148" ry="11" fill="#000" opacity="0.35"/>
+
+  <!-- Fahrzeug (eigene, generische Coupé-Form) -->
+  <g transform="translate(256 296) scale(0.76) translate(-265 -292)">
+    <path fill="url(#body)" d="M92 312 C92 296 104 288 124 284 L188 274 C214 246 250 226 292 224 C330 222 360 236 382 262 L410 270 C428 274 438 288 438 304 L438 316 C438 322 434 326 428 326 L100 326 C95 326 92 322 92 316 Z"/>
+    <path fill="#0f1216" opacity="0.85" d="M206 272 C228 252 256 241 286 239 L288 272 Z"/>
+    <path fill="#0f1216" opacity="0.85" d="M300 239 C328 241 350 251 366 268 L300 272 Z"/>
+    <rect x="410" y="282" width="18" height="8" rx="4" fill="#ffe7a8"/>
+    <g>
+      <circle cx="160" cy="326" r="36" fill="#0f1216"/>
+      <circle cx="160" cy="326" r="25" fill="none" stroke="#c9d6f5" stroke-width="9"/>
+      <circle cx="160" cy="326" r="7" fill="#c9d6f5"/>
+      <circle cx="368" cy="326" r="36" fill="#0f1216"/>
+      <circle cx="368" cy="326" r="25" fill="none" stroke="#c9d6f5" stroke-width="9"/>
+      <circle cx="368" cy="326" r="7" fill="#c9d6f5"/>
+    </g>
+  </g>
+</svg>

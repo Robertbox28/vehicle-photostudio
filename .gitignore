@@ -1,0 +1,7 @@
+# Laufzeitdaten: Fotos und Index werden vom Server erzeugt
+images/*
+!images/.gitkeep
+
+# System
+.DS_Store
+Thumbs.db
