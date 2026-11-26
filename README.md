@@ -2,6 +2,24 @@
 
 Erstellt einheitliche Katalogbilder deiner Fahrzeuge – einzeln mit freier Kamera oder vollautomatisch für alle Fahrzeuge aus `QBCore.Shared.Vehicles`.
 
+Autor: Robertbox28 · robertbox28.ch · Für Culture City
+
+![Vehicle Photo Studio mit den fünf Kamerawinkeln von oben gesehen](docs/vorschau/kopf.jpg)
+
+## Vorschau
+
+### Galerie
+
+![Galerie mit Fahrzeugkarten links und der Detailansicht rechts](docs/vorschau/galerie.jpg)
+
+`/fotokatalog` für Admins, `/meinefotos` für Spieler: alle Winkel, fehlende Fotos, Link kopieren, löschen.
+
+### Menü an den festen Orten
+
+<img src="docs/vorschau/menue.jpg" width="360" alt="Menü mit Fahrzeug fotografieren, Meine Fotos, Katalog-Studio und Fahrzeugkatalog">
+
+Galerie und Menü sind mit Beispieldaten dargestellt. Die vollständige Anleitung liegt unter [`docs/anleitung.html`](docs/anleitung.html).
+
 ## Voraussetzungen
 - `qb-core`
 - `screenshot-basic` (citizenfx/screenshot-basic)
@@ -116,6 +134,3 @@ Tipp: `Config.Encoding = 'webp'` spart viel Speicherplatz auf Fivemanage.
 - Alles, was als NUI auf dem Bildschirm liegt (HUD, Chat, Notifys), ist im Foto. HUD über `Config.OnEnter/OnExit` ausblenden, Chat vorher ausblenden lassen.
 - Der Ort `himmel` ergibt fast reinen Himmel als Hintergrund – ideal, wenn du die Autos später freistellen willst.
 - Erneut fotografieren: `Config.SkipExisting = false` oder den Eintrag aus `index.json` löschen.
-
----
-Autor: Robertbox28 · robertbox28.ch · Für Culture City
