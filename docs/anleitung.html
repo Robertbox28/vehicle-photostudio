@@ -313,15 +313,21 @@ set vps_webhook_player  "https://discord.com/api/webhooks/..."</code></pre></div
 
     <section id="studio-ort">
       <h2><span class="n">04</span>Studio-Orte</h2>
-      <p class="sub">Du kannst beliebig viele Orte anlegen, z.B. Flughafen, Showroom, Hafen am Abend oder Himmel zum Freistellen. Im Studio wechselst du mit <kbd>B</kbd> zwischen ihnen.</p>
+      <p class="sub">Du kannst beliebig viele Orte anlegen, z.B. Garage, Hangar, Showroom, Hafen am Abend oder Himmel zum Freistellen. Im Studio wechselst du mit <kbd>B</kbd> zwischen ihnen.</p>
       <h3>Neuen Ort anlegen</h3>
       <ol class="steps">
         <li><div>Stell dich an eine freie, flache Stelle, an der nichts im Hintergrund stört. Schau in die Richtung, in die das Auto zeigen soll.</div></li>
         <li><div>Gib <code>/vpspos</code> ein. In der F8-Konsole steht danach eine fertige Zeile für die Config.</div></li>
         <li><div>Füg die Zeile in <code>Config.Studios</code> ein und pass <code>name</code> und <code>label</code> an:
           <div class="code"><span class="file">config.lua</span><button class="copy" type="button">Kopieren</button><pre><code>Config.Studios = {
-    { name = 'flughafen', label = 'Flughafen (LSIA)',
-      coords = vector3(-1336.6, -3044.1, 13.94), heading = 240.0, onGround = true },
+    { name = 'Garage', label = 'Garage',
+      coords = vector3(-1507.71, -2992.78, -82.58), heading = 269.68, onGround = true },
+
+    { name = 'Hangar', label = 'Hangar (LSIA)',
+      coords = vector3(-1266.93, -3010.64, -48.86), heading = 0.49, onGround = true },
+
+    { name = 'Tuner', label = 'Tuner Garage',
+      coords = vector3(-1333.46, 147.95, -99.57), heading = 42.68, onGround = true },
 
     { name = 'himmel', label = 'Himmel (zum Freistellen)',
       coords = vector3(-3200.0, -3200.0, 900.0), heading = 0.0,
@@ -332,7 +338,7 @@ set vps_webhook_player  "https://discord.com/api/webhooks/..."</code></pre></div
       time = { hour = 19, minute = 30 }, weather = 'CLEAR', suffix = true },
 }
 
-Config.DefaultStudio = 'flughafen'</code></pre></div>
+Config.DefaultStudio = 'Hangar'</code></pre></div>
         </div></li>
         <li><div>Resource neu starten. Mit <code>/vpsorte</code> siehst du alle Orte.</div></li>
       </ol>
@@ -348,7 +354,7 @@ Config.DefaultStudio = 'flughafen'</code></pre></div>
           <tr><td><code>suffix</code></td><td><code>true</code> hängt den Ortsnamen an den Dateinamen, z.B. <code>adder_himmel.png</code>. So überschreiben sich Bilder von verschiedenen Orten nicht.</td></tr>
         </tbody>
       </table></div>
-      <div class="note"><p><strong>Ohne <code>suffix</code></strong> teilen sich die Orte dieselben Dateinamen. Ein neues Foto am Hafen ersetzt dann das vom Flughafen. Für den Katalog ist das meist gewollt: ein Bild pro Auto, egal wo es entstanden ist.</p></div>
+      <div class="note"><p><strong>Ohne <code>suffix</code></strong> teilen sich die Orte dieselben Dateinamen. Ein neues Foto am Hafen ersetzt dann das aus dem Hangar. Für den Katalog ist das meist gewollt: ein Bild pro Auto, egal wo es entstanden ist.</p></div>
       <h3>Am aktuellen Standort</h3>
       <p>Zusätzlich zu den festen Orten gibt es den Ort <code>hier</code>. Das Fahrzeug erscheint dann genau dort, wo du beim Öffnen stehst, und zeigt in deine Blickrichtung. Andere Spieler und NPCs sind trotzdem ausgeblendet, Uhrzeit und Wetter bleiben echt.</p>
       <div class="code"><button class="copy" type="button">Kopieren</button><pre><code>/photostudio adder hier
@@ -367,7 +373,7 @@ Config.DefaultStudio = 'flughafen'</code></pre></div>
     suffix        = false,
 }</code></pre></div>
       <div class="note warn"><p><strong>Achte auf den Platz.</strong> Das Fahrzeug wird dort hingestellt, wo du stehst. Steht eine Wand oder ein Laternenmast im Weg, steckt es darin. Geh vor dem Öffnen an eine freie Stelle und schau in die Richtung, in die das Auto zeigen soll.</p></div>
-      <div class="note"><p>Die Koordinaten der beiden mitgelieferten Orte sind ingame nicht getestet. Prüf sie einmal und ersetz sie bei Bedarf mit <code>/vpspos</code>.</p></div>
+      <div class="note"><p>Mitgeliefert sind die drei Innenräume Garage, Hangar und Tuner Garage sowie der Himmel. Bei Befehlen zählt die genaue Schreibweise: <code>/photostudio adder Hangar</code>, nicht <code>hangar</code>.</p></div>
     </section>
 
     <section id="befehle">
@@ -721,8 +727,8 @@ end, plate)</code></pre></div>
         <thead><tr><th>Option</th><th>Standard</th><th>Bedeutung</th></tr></thead>
         <tbody>
           <tr><td><code>Permission</code></td><td><code>'admin'</code></td><td>Wer die Admin-Befehle nutzen darf</td></tr>
-          <tr><td><code>Studios</code></td><td>flughafen, himmel</td><td>Liste der Studio-Orte</td></tr>
-          <tr><td><code>DefaultStudio</code></td><td><code>'flughafen'</code></td><td>Ort beim Öffnen, auch <code>'hier'</code> möglich</td></tr>
+          <tr><td><code>Studios</code></td><td>Garage, Hangar, Tuner, himmel</td><td>Liste der Studio-Orte</td></tr>
+          <tr><td><code>DefaultStudio</code></td><td><code>'Hangar'</code></td><td>Ort beim Öffnen, auch <code>'hier'</code> möglich</td></tr>
           <tr><td><code>HereStudio</code></td><td>an</td><td>Ort „aktueller Standort“ mit echter Uhrzeit und echtem Wetter</td></tr>
           <tr><td><code>Time</code> / <code>Weather</code></td><td>12:00 / <code>EXTRASUNNY</code></td><td>Licht während der Aufnahme, wenn der Ort nichts eigenes hat</td></tr>
           <tr><td><code>FOV</code></td><td><code>40.0</code></td><td>Brennweite, wenn <code>HighQuality</code> aus ist</td></tr>

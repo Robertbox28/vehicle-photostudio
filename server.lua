@@ -245,7 +245,7 @@ VPS.endSession = endSession
 
 QBCore.Commands.Add('photostudio', 'Fahrzeug-Fotostudio öffnen', {
     { name = 'model', help = 'Spawn-Name oder Ort (optional)' },
-    { name = 'ort',   help = 'Studio-Ort, z.B. flughafen, himmel (optional)' },
+    { name = 'ort',   help = 'Studio-Ort, z.B. Hangar, Garage, Tuner, himmel (optional)' },
 }, false, function(source, args)
     local list = buildList(nil, false)
     local start, place = args[1], args[2]

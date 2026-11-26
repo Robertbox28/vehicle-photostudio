@@ -10,7 +10,7 @@ Config.BucketBase = 7000
 -- Studio-Orte
 ---------------------------------------------------------------------
 -- Im Studio mit B (SHIFT+B rückwärts) umschalten, oder direkt per Befehl:
---   /photostudio adder himmel      /photoall sports flughafen
+--   /photostudio adder himmel      /photoall sports Hangar
 -- Neuen Ort anlegen: hinstellen, /vpspos eingeben, die Zeile aus der
 -- F8-Konsole hier einfügen und name/label anpassen.
 --
@@ -25,8 +25,18 @@ Config.BucketBase = 7000
 --              damit Bilder von verschiedenen Orten sich nicht überschreiben
 Config.Studios = {
     {
-        name = 'flughafen', label = 'Flughafen (LSIA)',
-        coords = vector3(-1336.6, -3044.1, 13.94), heading = 240.0,
+        name = 'Garage', label = 'Garage',
+        coords = vector3(-1507.71, -2992.78, -82.58), heading = 269.68,
+        onGround = true,
+    },
+    {
+        name = 'Hangar', label = 'Hangar (LSIA)',
+        coords = vector3(-1266.93, -3010.64, -48.86), heading = 0.49,
+        onGround = true,
+    },
+    {
+        name = 'Tuner', label = 'Tuner Garage',
+        coords = vector3(-1333.46, 147.95, -99.57), heading = 42.68,
         onGround = true,
     },
     {
@@ -57,7 +67,7 @@ Config.HereStudio = {
 }
 
 -- Ort beim Öffnen (name aus Config.Studios, oder 'hier')
-Config.DefaultStudio = 'flughafen'
+Config.DefaultStudio = 'Hangar'
 
 -- Standard-Licht & -Wetter (wenn der Ort nichts eigenes hat)
 Config.Time    = { hour = 12, minute = 0 }
@@ -277,7 +287,7 @@ Config.PlayerStudio = {
         },
     },
     -- Welche Studio-Orte Spieler mit B wechseln dürfen
-    -- nil = alle, {} = keiner (bleibt am Ort des Eingangs), oder z.B. { 'flughafen', 'showroom' }
+    -- nil = alle, {} = keiner (bleibt am Ort des Eingangs), oder z.B. { 'Garage', 'Hangar' }
     studios    = nil,
     -- Spieler dürfen am aktuellen Standort fotografieren (/fotostudio hier oder B)
     allowHere  = true,
