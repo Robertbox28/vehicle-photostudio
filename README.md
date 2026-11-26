@@ -105,6 +105,12 @@ Jedes Foto wird als Embed mit Bild gepostet. Einstellungen in `Config.Discord`: 
 
 Tipp: `Config.Encoding = 'webp'` spart viel Speicherplatz auf Fivemanage.
 
+## Beste Bildqualität
+- `Config.HighQuality` ist standardmäßig an: Brennweite 30, höhere Detailstufe, volle Fahrzeug-Details, extra Wartezeit für Texturen, Fahrzeug repariert und sauber, GTA-Benachrichtigungen aus
+- `Config.Encoding = 'png'` (verlustfrei) und `Config.Quality = 1.0`
+- Optional `dof = true` für einen leicht unscharfen Hintergrund (vorher testen)
+- Im Spiel: höchste Auflösung im Vollbild, Texturen/Shader/Reflexionen auf Maximum, Kantenglättung an, Bewegungsunschärfe aus – das Foto ist so groß wie dein Spielbild
+
 ## Tipps für saubere Bilder
 - Bildgröße = deine Spielauflösung. Für Katalogbilder 1920×1080 oder höher, Grafik auf Ultra.
 - Alles, was als NUI auf dem Bildschirm liegt (HUD, Chat, Notifys), ist im Foto. HUD über `Config.OnEnter/OnExit` ausblenden, Chat vorher ausblenden lassen.

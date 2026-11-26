@@ -4,7 +4,7 @@ lua54 'yes'
 
 name 'vehicle-photostudio'
 description 'Vehicle Photo Studio für QBCore – Katalogbilder aller Fahrzeuge per Knopfdruck'
-version '1.4.0'
+version '1.5.0'
 
 shared_script 'config.lua'
 client_scripts {

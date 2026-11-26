@@ -70,6 +70,23 @@ Config.FOV          = 40.0   -- kleiner = weniger Verzerrung, Fahrzeug wird auto
 Config.Padding      = 1.05   -- Rand um das Fahrzeug (1.0 = knapp)
 Config.CaptureDelay = 800    -- ms warten, bis Texturen/LODs geladen sind
 
+---------------------------------------------------------------------
+-- Beste Bildqualität
+---------------------------------------------------------------------
+-- Die Bildgröße ist immer deine Spielauflösung. Für die besten Fotos:
+-- Vollbild in der höchsten Auflösung, Grafik auf Maximum (siehe Anleitung).
+Config.HighQuality = {
+    enabled       = true,
+    fov           = 30.0,   -- engere Brennweite wie bei Profi-Autofotos (ersetzt Config.FOV)
+    lodScale      = 2.0,    -- höhere Detailstufe der Umgebung und Modelle während der Aufnahme
+    lodMultiplier = 3.0,    -- Fahrzeug immer in voller Detailstufe
+    textureWait   = 1500,   -- ms extra vor dem ersten Foto jedes Fahrzeugs (Texturen laden)
+    perfectCar    = true,   -- Fahrzeug repariert, ohne Dellen, sauber
+    hideFeed      = true,   -- GTA-Benachrichtigungen während der Aufnahme ausblenden
+    dof           = false,  -- Hintergrund leicht unscharf (Tiefenschärfe), Fahrzeug bleibt scharf
+    dofStrength   = 0.6,    -- 0.0 – 1.0
+}
+
 -- yaw: 0 = von vorne, -90 = linke Seite (Fahrerseite), 180 = von hinten
 -- pitch: Kamerahöhe in Grad, zoom: individueller Zoomfaktor
 Config.Angles = {
@@ -129,8 +146,8 @@ Config.DefaultFilter = 1
 ---------------------------------------------------------------------
 -- Ausgabe
 ---------------------------------------------------------------------
-Config.Encoding = 'png'      -- 'png' | 'jpg' | 'webp'  (für Uploads ist 'webp' deutlich kleiner)
-Config.Quality  = 0.95       -- nur für jpg/webp
+Config.Encoding = 'png'      -- 'png' = verlustfrei (beste Qualität) | 'webp' | 'jpg'
+Config.Quality  = 1.0        -- nur für jpg/webp: 1.0 = beste Qualität, 0.92 = kleinere Dateien
 
 -- Speicherort der Bilder
 -- 'local'      = nur in vehicle-photostudio/images/

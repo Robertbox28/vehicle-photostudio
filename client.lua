@@ -72,6 +72,8 @@ local lastResult = ''
 local colorIdx, filterIdx = 1, Config.DefaultFilter or 1
 local origColors = nil
 local extraDelay = 0
+local HQ = (Config.HighQuality and Config.HighQuality.enabled) and Config.HighQuality or {}
+local function camFov() return HQ.fov or Config.FOV end
 local lastCaptureAt = -100000
 
 -- Einstellungen aus Config.VehicleOverrides für das aktuelle Fahrzeug
@@ -186,6 +188,13 @@ local function spawnVehicle(model)
 
     FreezeEntityPosition(veh, true)
     SetEntityInvincible(veh, true)
+    if HQ.lodMultiplier then SetVehicleLodMultiplier(veh, HQ.lodMultiplier) end
+    if HQ.perfectCar then
+        SetVehicleFixed(veh)
+        SetVehicleDeformationFixed(veh)
+        SetVehicleEngineHealth(veh, 1000.0)
+        SetVehicleBodyHealth(veh, 1000.0)
+    end
     SetVehicleDirtLevel(veh, 0.0)
     WashDecalsFromVehicle(veh, 1.0)
     SetVehicleNumberPlateText(veh, Config.Plate)
@@ -226,7 +235,7 @@ local function spawnVehicle(model)
         applyColor()
     end
 
-    extraDelay = (entry and (entry.custom or entry.props)) and (Config.CustomExtraDelay or 0) or 0
+    extraDelay = ((entry and (entry.custom or entry.props)) and (Config.CustomExtraDelay or 0) or 0) + (HQ.textureWait or 0)
     Wait(200)
     return true
 end
@@ -241,7 +250,7 @@ local function updateCamera()
     local mn, mx = GetModelDimensions(GetEntityModel(veh))
     local center = vector3((mn.x + mx.x) / 2, (mn.y + mx.y) / 2, (mn.z + mx.z) / 2 + (o.height or 0.0))
     local radius = #(mx - mn) / 2
-    local dist = (radius / math.sin(math.rad(Config.FOV / 2))) * Config.Padding * (a.zoom or 1.0) * view.zoom * (o.zoom or 1.0)
+    local dist = (radius / math.sin(math.rad(camFov() / 2))) * Config.Padding * (a.zoom or 1.0) * view.zoom * (o.zoom or 1.0)
 
     local dir = vector3(math.sin(yaw) * math.cos(pitch), math.cos(yaw) * math.cos(pitch), math.sin(pitch))
     local camLocal = center + dir * dist
@@ -249,12 +258,19 @@ local function updateCamera()
     local target = GetOffsetFromEntityInWorldCoords(veh, center.x, center.y, center.z)
 
     if not cam then
-        cam = CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', camPos.x, camPos.y, camPos.z, 0.0, 0.0, 0.0, Config.FOV, false, 0)
+        cam = CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', camPos.x, camPos.y, camPos.z, 0.0, 0.0, 0.0, camFov(), false, 0)
         SetCamActive(cam, true)
         RenderScriptCams(true, false, 0, true, true)
     end
     SetCamCoord(cam, camPos.x, camPos.y, camPos.z)
-    SetCamFov(cam, Config.FOV)
+    SetCamFov(cam, camFov())
+    if HQ.dof then
+        -- scharf vom vorderen bis zum hinteren Rand des Fahrzeugs, dahinter weich
+        SetCamUseShallowDofMode(cam, true)
+        SetCamNearDof(cam, math.max(0.1, dist - radius))
+        SetCamFarDof(cam, dist + radius * 1.2)
+        SetCamDofStrength(cam, HQ.dofStrength or 0.6)
+    end
     PointCamAtCoord(cam, target.x, target.y, target.z)
     SetFocusPosAndVel(camPos.x, camPos.y, camPos.z, 0.0, 0.0, 0.0)
 end
@@ -476,6 +492,9 @@ local function frameLoop()
     CreateThread(function()
         while active do
             HideHudAndRadarThisFrame()
+            if HQ.hideFeed then ThefeedHideThisFrame() end
+            if HQ.lodScale then OverrideLodscaleThisFrame(HQ.lodScale) end
+            if HQ.dof then SetUseHiDof() end
             DisableAllControlActions(0)
             SetVehicleDensityMultiplierThisFrame(0.0)
             SetPedDensityMultiplierThisFrame(0.0)
